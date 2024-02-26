@@ -1,12 +1,13 @@
-import { ReactNode, createContext, useContext } from "react"
-import { useMutation } from "@tanstack/react-query"
-import axios from 'axois'
+import {  createContext } from "react"
 
-type AuthContext = {
-
+export interface AuthContext { // * Instance of Context 
+  user: User | null,
+  token: string | null,
+  authUser: (data: any) => Promise<void>,
+  logOut: () => void,
 }
 
-type User = {
+export interface User { // * Instance of our user
   avatar?: String,
   name: String,
   des?: String,
@@ -14,24 +15,4 @@ type User = {
   password: String,
 }
 
-type AuthProviderProps = {
-  children: ReactNode
-}
-
-const Context = createContext<AuthContext | null>(null)
-
-export function AuthProvider({ children }: AuthProviderProps) {
-  const signup = useMutation({
-    mutationFn: (user: User) => {
-    return axios.post(`${import.meta.env.BACK_END_URL}/signup`, user)
-    }
-  })
-
-  return <Context.Provider value={{}}>
-    {children}
-  </Context.Provider>
-}
-
-export function useAuth() {
-  return useContext(Context)
-}
+export const Context = createContext<AuthContext | null>(null) // Create the context
