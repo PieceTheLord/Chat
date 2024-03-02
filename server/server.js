@@ -10,7 +10,7 @@ const app = express()
 
 const regRouter = require('./routes/authentication.js')
 const connectDB = require('./database/connection.js')
-const authStrategy = require('./config/passprot.js')
+const authStrategy = require('./config/passport.js')
 const User = require('./database/userModel.js')
 
 const allowOrigin = [process.env.FRONT_END_URL]
