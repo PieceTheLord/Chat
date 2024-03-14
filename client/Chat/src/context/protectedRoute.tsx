@@ -7,8 +7,7 @@ type ProtectedRouteProps = PropsWithChildren
 export default function ProtectedRoute({ children }: ProtectedRouteProps) {
   const user = useAuth()
   
-
-  if (user?.token === '' || user?.user === null) return <Navigate to={'/signup'} replace />
+  if (user?.token === null || user?.user === null) return <Navigate to={'/'} replace />
 
   return children;
 };
